@@ -8,9 +8,10 @@ go run freshmanual.com
 ```
 
 ### Routes
-1. `https://freshmanual.com/files/road-1072823__480.jpg`
-2. `https://freshmanual.com/files/`
-3. `https://freshmanual.com/api`
+1. https://freshmanual.com/files/
+2. https://freshmanual.com/files/test.jpg
+3. https://freshmanual.com/files/test.pdf
+4. https://freshmanual.com/api/
 
 All other routes should yeild a `404`
 
