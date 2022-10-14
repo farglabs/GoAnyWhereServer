@@ -16,11 +16,11 @@ func StartSSL() {
 
 	// Initialize FILE SERVER
 	fs := http.FileServer(http.Dir("/home/romulus/files"))
-	mux.Handle("/files/", http.StripPrefix("/files", Router(fs)))
+	mux.Handle("/files/", http.StripPrefix("/files", FileServer(fs)))
 
 	// Initialize API
 	api := http.HandlerFunc(Home)
-	mux.Handle("/api/", api)
+	mux.Handle("/api/", ApiRouter(api))
 
 	// REDIRECT TO HTTPS:302
 	go func() {
