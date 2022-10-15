@@ -1,14 +1,11 @@
 package main
 
 import (
-	"freshmanual.com/server"
 	"freshmanual.com/db"
+	"freshmanual.com/server"
 )
 
 func main() {
-	_, err:= db.InitDB()
-	if err != nil {
-		return 
-	}
+	db.InitDB()
 	server.StartSSL()
 }
