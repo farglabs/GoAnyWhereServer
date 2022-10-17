@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: ./fileserver/Dockerfile
     hostname: fileserver
+    networks:
+      - dmz
     ports:
       - 443:55443
     volumes:
@@ -15,6 +17,8 @@ services:
     build:
       context: .
       dockerfile: ./link-manager/Dockerfile
+    networks:
+      - isolated
     hostname: link-manager
     ports:
       - 8080:80
@@ -31,3 +35,10 @@ services:
   #     - fs-suite:/home/node/app
 volumes:
   fs-suite:
+networks:
+  dmz:
+    name: custom_dmz
+    driver: bridge
+  isolated:
+    name: custom_isolated
+    driver: bridge
