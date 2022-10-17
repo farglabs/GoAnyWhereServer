@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  fileserver:
+    image: fileserver
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 55433:55433
+  certbot:
+    image: certbot
+    build:
+      context: .
+      dockerfile: ./Dockerfile

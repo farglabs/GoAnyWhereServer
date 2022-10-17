@@ -1,0 +1,33 @@
+version: '3.4'
+services:
+  fileserver:
+    image: fileserver
+    build:
+      context: .
+      dockerfile: ./fileserver/Dockerfile
+    hostname: fileserver
+    ports:
+      - 443:55443
+    volumes:
+      - fs-suite:/home/fileserver
+  link-manager:
+    image: link-manager
+    build:
+      context: .
+      dockerfile: ./link-manager/Dockerfile
+    hostname: link-manager
+    ports:
+      - 8080:80
+    volumes:
+      - fs-suite:/home/fileserver
+  # certbot:
+  #   image: certbot
+  #   build:
+  #     context: .
+  #     dockerfile: ./certbot/Dockerfile
+  #   ports:
+  #     - 55433:55433
+  #   volumes:
+  #     - fs-suite:/home/node/app
+volumes:
+  fs-suite:

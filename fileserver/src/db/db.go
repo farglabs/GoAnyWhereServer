@@ -5,27 +5,25 @@ import (
 	"fmt"
 	"log"
 	"os"
-
-	"freshmanual.com/db/data"
-	"freshmanual.com/db/schema"
+	"fileserver/db/data"
+	"fileserver/db/schema"
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func InitDB(){
+func InitDB() {
 	// Initialize the database file
 	createDB()
 
 	// Start the database with newly init file
 	db, err := sql.Open("sqlite3", "db/init.db")
 	data.CheckDBErr(err)
-	
+
 	// Create Schema
 	schema.CreateTables(db)
 
 	// PreSeed the data
 	data.Seed(db)
 }
-
 
 func createDB() {
 	dbFile, err := os.Create("db/init.db")

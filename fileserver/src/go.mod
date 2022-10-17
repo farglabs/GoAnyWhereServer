@@ -1,4 +1,4 @@
-module freshmanual.com
+module fileserver
 
 go 1.17
 

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"freshmanual.com/db"
-	"freshmanual.com/server"
+	"fileserver/db"
+	"fileserver/server"
 )
 
 func main() {

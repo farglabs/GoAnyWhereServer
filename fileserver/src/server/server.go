@@ -8,7 +8,7 @@ import (
 
 func StartSSL() {
 	s := &http.Server{
-		Addr:    ":443",
+		Addr:    ":55443",
 		Handler: nil,
 	}
 
@@ -23,20 +23,20 @@ func StartSSL() {
 	mux.Handle("/api/", ApiRouter(api))
 
 	// REDIRECT TO HTTPS:302
-	go func() {
-		fmt.Println("HTTPS REDIRECT ACTIVE")
-		if err := http.ListenAndServe(":80", http.HandlerFunc(redirectToTls)); err != nil {
-			log.Fatalf("ListenAndServe error: %v", err)
-		}
-	}()
+	// go func() {
+	// fmt.Println("HTTPS REDIRECT ACTIVE")
+	// if err := http.ListenAndServe(":8080", http.HandlerFunc(redirectToTls)); err != nil {
+	// 	log.Fatalf("ListenAndServe error: %v", err)
+	// }
+	// }()
 
 	// HTTPS SERVER
 	s.Handler = mux
 	fmt.Println("Server Running on", s.Addr)
 	log.Fatal(
 		s.ListenAndServeTLS(
-			"/etc/letsencrypt/live/freshmanual.com/fullchain.pem",
-			"/etc/letsencrypt/live/freshmanual.com/privkey.pem",
+			"/home/fileserver/fullchain.pem",
+			"/home/fileserver/privkey.pem",
 		))
 }
 
