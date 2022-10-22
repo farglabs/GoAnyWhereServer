@@ -12,6 +12,7 @@ services:
       - 443:55443
     volumes:
       - fs-suite:/home/fileserver
+      - fs-data:/var/fileserver
   link-manager:
     image: link-manager
     build:
@@ -35,6 +36,11 @@ services:
   #     - fs-suite:/home/node/app
 volumes:
   fs-suite:
+    # Recommended to utilize a fast, local volume for DB
+  fs-data:
+    # Recommended to attach to NFS/CIFS for this volume
+  fs-certs:
+    # PrivKey and PubCert/FullChain location; NFS/CIFS recommended if utilizing host to attain certs
 networks:
   dmz:
     name: custom_dmz
